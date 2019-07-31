@@ -18,30 +18,30 @@ class App extends React.Component {
     this.setVideos = this.setVideos.bind(this);
     this.submit = this.submit.bind(this);
     this.setSearch = this.setSearch.bind(this);
-    this.debouncedSearch = _.debounce(() => this.props.searchYouTube({query: this.state.search, max:5, key: YOUTUBE_API_KEY}, this.setVideos), 800, { 'leading': true })
+    this.debouncedSearch = _.debounce(() => this.props.searchYouTube({query: this.state.search, max: 5, key: YOUTUBE_API_KEY}, this.setVideos), 800, { 'leading': true });
   }
 
   setSearch(e) {
     const value = e.target.value;
     this.setState({
       search: value
-    })
+    });
     this.debouncedSearch();
   }
 
   componentDidMount() {
-    this.props.searchYouTube({query: this.state.search, max:5, key: YOUTUBE_API_KEY}, this.setVideos);
+    this.props.searchYouTube({query: this.state.search, max: 5, key: YOUTUBE_API_KEY}, this.setVideos);
   }
 
   setVideos(data) {
     this.setState({
       videos: data,
       selected: data[0]
-    })
+    });
   }
 
   submit(value) {
-    this.props.searchYouTube({query: value, max: 5, key: YOUTUBE_API_KEY}, this.setVideos)
+    this.props.searchYouTube({query: value, max: 5, key: YOUTUBE_API_KEY}, this.setVideos);
   }
 
   click(video) {
@@ -54,7 +54,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><Search  search={this.setSearch} submit={this.submit}/></div>
+            <div><Search search={this.setSearch} submit={this.submit}/></div>
           </div>
         </nav>
         <div className="row">
